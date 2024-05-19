@@ -25,7 +25,14 @@ function init () {
     });
 };
 
-function loadState() {};
+function loadState() {
+    
+    var json = localStorage.getItem("weather_dashboard");
+    
+    if (json !== null) {
+        state = JSON.parse(json);
+    }
+};
 
 function saveState() {};
 
