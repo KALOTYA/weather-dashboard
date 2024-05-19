@@ -34,7 +34,11 @@ function loadState() {
     }
 };
 
-function saveState() {};
+function saveState() {
+    var json = JSON.stringify(state);
+
+    localStorage.setItem("weather_dashboard", json);
+};
 
 function renderWeather() {};
 
