@@ -59,9 +59,13 @@ function renderWeather(city) {
         .then(coordinates => {
             console.log('Coordinates:', coordinates);
             // With the coordinates of the city, obtain the weather
+            var currentDate = new Date();
+            currentDate.setHours(12, 0, 0, 0);
+            var timestamp = Math.floor(currentDate.getTime() / 1000);
+
             return Promise.all([
                 fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=imperial&appid=${apiKey}`),
-                fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=imperial&appid=${apiKey}&units=metric`)
+                fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=imperial&dt=${timestamp}&appid=${apiKey}`)
             ]);
         })
         .then(([currentWeatherResponse, forecastResponse]) => {
@@ -84,10 +88,10 @@ function renderWeather(city) {
             
             // Set the values for the current weather
             $("#city").html(currentWeather.name + todayString);
-            $("#temperature").text(`${currentWeather.main.temp}°F`);
-            $("#wind").text(`${currentWeather.wind.speed} km/h`);
-            $("#humidity").text(`${currentWeather.main.humidity} %`);
-            $("#uv-index").text(`${currentWeather.weather[0].description}`);
+            $("#temperature").text(` ${currentWeather.main.temp}°F`);
+            $("#wind").text(` ${currentWeather.wind.speed} km/h`);
+            $("#humidity").text(` ${currentWeather.main.humidity} %`);
+            $("#uv-index").text(` ${currentWeather.weather[0].description}`);
 
 
             // Render the 5-day forecast
@@ -96,7 +100,8 @@ function renderWeather(city) {
             // Remove old forecasts
             $('#five-days-forecast .forecast').remove();
 
-            const dailyForecasts = forecast.list.filter(item => item.dt_txt.includes("12:00:00"));
+            const dailyForecasts = forecast.list.filter(item => item.dt_txt.includes("21:00:00"));
+            console.log("Daily:", dailyForecasts);
 
             for (let i = 0; i < 5; i++) {
                 const forecast = template.clone();
@@ -115,11 +120,11 @@ function renderWeather(city) {
                 ).join('');
 
                 // Set the values for the forecast day
-                forecast.find('.date').text(`${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`);
+                forecast.find('.date').text(` ${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} `);
                 forecast.find('.icon').html(forecastIconHtml);
-                forecast.find('.temperature').text(`${dayWeather.main.temp}°F`);
-                forecast.find('.wind').text(`${dayWeather.wind.speed} km/h`);
-                forecast.find('.humidity').text(`${dayWeather.main.humidity} %`);
+                forecast.find('.temperature').text(` ${dayWeather.main.temp}°F`);
+                forecast.find('.wind').text(` ${dayWeather.wind.speed} km/h`);
+                forecast.find('.humidity').text(` ${dayWeather.main.humidity} %`);
 
                 // Add the forecast to the 5-day-forecast
                 $('#five-days-forecast').append(forecast);
