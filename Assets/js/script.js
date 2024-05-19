@@ -2,7 +2,14 @@ var state = {
     history: []
 };
 
-function init () {};
+function init () {
+    loadState();
+    renderHistory();
+
+    $("#search-button").on('click', function(){
+        var city = $();
+    })
+};
 
 function loadState() {};
 
