@@ -1,12 +1,24 @@
-#uv-index {}
+#uv-index {
+    border-radius: 15%;
+    color: white;
+    padding: 0.2rem;
+}
 
-#uv-index {}
+#uv-index {
+    background-color: green;
+}
 
-#uv-index {}
+#uv-index.moderate {
+    background-color: blue;
+}
 
-#uv-index {}
+#uv-index.severe {
+    background-color: red;
+}
 
-.template {}
+.template {
+    display: none;
+}
 
 @media screen and (max-width: 576px) {
     h1 {
