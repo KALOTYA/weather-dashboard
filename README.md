@@ -71,7 +71,7 @@ Once you've completed these steps, you're all set up to use the Weather Dashboar
  
 Now you're all set up to start using the Weather Dashboard to better plan your weekends!
 
-LINK TO APP: [Weather Dashboard](https://drive.google.com/file/d/19emuedsAuKKMo282yqsAu42j-bUwwoc_/view)
+LINK TO APP: [Weather Dashboard](https://kalotya.github.io/weather-dashboard/)
 
 ## Contributing
 
