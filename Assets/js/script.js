@@ -43,7 +43,7 @@ function saveState() {
 
 function renderWeather(city) {
     // Get the coordinates of the city using OpenWeatherMap Geocoding API
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${encodeURIComponent(city)}&limit=1&appid=${apiKey}`)
         .then(response => response.json())
         .then(data => {
             console.log("Data received from the API:", data);
@@ -83,7 +83,7 @@ function renderWeather(city) {
 
             // Generate the weather icons for the current weather
             const iconHtml = currentWeather.weather.map(currentWeather =>
-                `<img width='64px' title='${currentWeather.description}' src='http://openweathermap.org/img/wn/${currentWeather.icon}@2x.png' />`
+                `<img width='64px' title='${currentWeather.description}' src='https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png' />`
             ).join('');
             
             // Set the values for the current weather
@@ -116,7 +116,7 @@ function renderWeather(city) {
 
                 // Generate the weather icons for the forecast day
                 const forecastIconHtml = dayWeather.weather.map(currentWeather =>
-                    `<img width='64px' title='${currentWeather.description}' src='http://openweathermap.org/img/wn/${currentWeather.icon}@2x.png' />`
+                    `<img width='64px' title='${currentWeather.description}' src='https://openweathermap.org/img/wn/${currentWeather.icon}@2x.png' />`
                 ).join('');
 
                 // Set the values for the forecast day
